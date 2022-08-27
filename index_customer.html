@@ -1,0 +1,62 @@
+<?php
+    require_once("secure.php")
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ctrl Solution</title>
+</head>
+<body>
+    <nav id="nav">
+        <a href="index_customer.html">Home</a>
+        <a href="#">How To</a>
+        <a href="#">Find Us</a>
+        <a href="#">Book Consultation</a>
+        <a href="#">insert help emoji here</a>
+    </nav>
+    <section id="mainContainer">
+        <fieldset>
+            <aside style="float: right;">
+                <fieldset>
+                    <section id="notif">
+                        <input type="button" value="My notifications" onclick="notifs()">
+                        <p id="notifplaceholder">Progress reports will appear here</p>
+                    </section>
+                    <section id="history"></section>
+                        <input type="button" value="Repair History">
+                        <p id="historyplaceholder">Date:<br>Description:<br>Ticket Number:
+                        </p>
+                    <section id="book">
+                        <a href="http://">
+                            <input type="button" value="Book Consultation">
+                        </a>
+                    </section>
+                </fieldset>
+            </aside>
+            <section id="progress">
+
+            </section>
+            <section id="userinf">
+                <p>Username:</p>
+                <p>Active repairs:</p>
+                <p>Ticket number:</p>
+                <p id="date">Date:</p>
+            </section>
+            <section id="messagetech">
+                <p>If you have any queries or feel like you need to be updated on the progess 
+                    of your repair, feel free to send a message to the technician working on your
+                    repair.
+                </p>
+                <a href="#"><p>Who is repairing my device?</p></a>
+                <form action="techmessage.php" method="post">
+                    <textarea id="techmessage" cols="30" rows="10"></textarea>
+                    <input type="submit" value="Send">
+                </form>
+            </section>
+        </fieldset>
+    </section>
+</body>
+</html>
