@@ -1,0 +1,88 @@
+
+
+  .Cpage {
+    display: block;
+    column-count:2 ;
+    column-gap: 25px;
+    column-rule: solid;
+    column-rule:#f2f2f2 ;
+    padding: 0;
+    border: 5px;
+    border-style: double;
+    border-color: grey;
+    font: inherit;
+    font-size: 100%; 
+    box-sizing: border-box;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10%;
+    color: ivory;
+    background-color: #000000;
+    width: 55%;
+  }
+  
+  
+  .Contact1 {
+    float: left;
+    position: relative;
+    margin: 90px;
+    padding: 0;
+    border: 0;
+    
+  }
+  
+  .Contact2 {
+    float:right;
+    position: relative;
+    margin: 55px;
+    padding: 0;
+    border: 0;
+    
+  }
+  
+  input[type=text], input[type= email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  
+  .FRM, .org{
+    display: flex;
+    vertical-align: bottom;
+  }
+  
+  
+  #myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+    width: 50px;
+  }
+  
+  #myBtn:hover {
+    background-color: #555;
+  }
+  
+  input[type="submit"] {
+    background-color: #3e8e41;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+  }
