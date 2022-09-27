@@ -1,5 +1,5 @@
 <?php
-    require_once("secure.php")
+//include("Login.php");
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -31,9 +31,27 @@
 
         <?php
             require_once("config.php");
+        $ID = $_REQUEST['id']; 
 
             $conn = mysqli_connect(SERVERNAME,USERNAME,PASSWORD,DATABASE) or die("<h1 style='color:red;'>Cannot connect to the database</h1>");
+            $query = "SELECT customer.userID, job.status from customer inner join job on customer.customer_id = job.customer_id where  customer.userID = \"$ID\" ";
+            $result = mysqli_query($conn, $query) or die("Cannot execute query");
+           
+            $r= 0;
+            while ($row= mysqli_fetch_array($result)){
+                if($row['status'] = "created") {
+                    $r = 25;
+                } elseif($row['status'] = "in progress"){
+                    $r= 50;
+                } elseif($row['status'] = "complete"){
+                    $r= 100;
+            }
+
+            }
+
+           mysqli_close($conn);
         ?>
+
         <section id="mainContainer">
             <div class="container-fluid mt-3">
                 <div class="row">
@@ -41,7 +59,7 @@
                         <fieldset>
                             <p class="text-center display-5">Repair progress</p>
                             <div class="progress">
-                                <div class="progress-bar bg-success progress-bar-animated" style="width:50%"></div>
+                                <div class="progress-bar bg-success progress-bar-animated" style="width:<?php echo $r +"%";?>"></div>
                             </div><br>
                         </fieldset>
 
@@ -72,7 +90,10 @@
                         <aside style="float: right;">
                         
                             <fieldset style="border:2px black ;">
-                               <legend>Welcome</legend>
+                            <?php
+
+                            echo "<legend>$ID</legend>";
+                            ?>
                                 <section id="notif">
                                     <button type="button"  class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo">My Messages</button>
                                     <div id="demo" class="collapse show">

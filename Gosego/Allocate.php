@@ -37,7 +37,7 @@
                 <div class="col-sm-2"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row text-center">
             <div class="col-sm-2"></div>
             <div class="col-sm-5">
                 <h3>Job Information:</h3>
@@ -45,25 +45,37 @@
             <div class="col-sm-5"></div>
         </div>
         <div class="row">
-            <div class="col"></div>
             <div class="col">
-                <form action="newTicket.php" method="post" enctype="multipart/form-data">
-                    <div id="center">
+                <form action="edit.php" method="post" enctype="multipart/form-data">
+                    <div class="text-center">
                         <div class="mb-1 mt-1">
                         <div class="dropdown">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
                             Ticket Number
                             </button>
                             <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Link 1</a></li>
-                            <li><a class="dropdown-item" href="#">Link 2</a></li>
-                            <li><a class="dropdown-item" href="#">Link 3</a></li>
+                            <?php
+                            require_once("config.php");
+
+                            $conn = mysqli_connect(SERVERNAME,USERNAME,PASSWORD,DATABASE) or die("<h1 style='color:red;'>Cannot connect to the database</h1>");
+                    
+                            $query1= "SELECT * from job where status =\"Not allocated\" ";
+                            $result1= mysqli_query($conn, $query1);
+                    
+                            while($row= mysqli_fetch_array($result1)){
+                             echo "<button type=\submit\" name=\"ticket\"><li>".$row['ticket_number']."</li></button>";
+                            }
+
+                            $row = mysqli_fetch_array($result1);
+                            $dName= $row['ticket_number'];
+                            ?>
                             </ul>
                         </div>
+                        <div class="col-sm-2"></div>
                         </div>
                         <div class="mb-1">
                             <label for="Lnameid" class="form-label">Device name:</label>
-                            <input type="text" id="Lnameid" name="Lname" class="form-control">
+                            <input type="text" id="Lnameid" name="Lname" class="form-control" value="<?php echo $_REQUEST['ticket'] ?>">
                         </div>
                         <div class="mb-1">
                             <label for="studentid" class="form-label">Device Type:</label>
@@ -91,61 +103,42 @@
         <div class="row">
             <div class="col"></div>
             <div class="col">
-                <div class="mb-1 mt-1">
-                    <label for="devicenameid" class="form-label">Device Name:</label>
-                    <input type="text" id="devicenameid" name="devicename" class="form-control">
-                </div>
-                <div class="mb-1">
-                    <label class="form-label" for="devicenumberid">Number of Devices:</label><br>
-                    <select class="form-select" name="devicenumber" id="devicenumberid" size="1">
-                        <option value="One">1</option>
-                        <option value="Two">2</option>
-                        <option value="Three">3</option>
-                    </select>
-                </div>
-                <div class="mb-1">
-                    <label class="form-label" for="typeid">Device Type:</label>
-                    <select class="form-select" name="type" id="typeid" size="1">
-                        <option value="Laptop">Laptop</option>
-                        <option value="Desktop">Desktop</option>
-                        <option value="Smartphone">Smartphone</option>
-                    </select>
-                </div>
-                <div class="mt-1">
-                    <label for="descrptionid" class="form-label">Fault Descrption:</label>
-                    <textarea name="descrption" id="descrptionid" rows="5" class="form-control"></textarea>
-                </div>
-                <div class="input-group">
-                    <input class="form-control" type="file" id="faultimage" name="faultimage"><br>
-                </div>
-                <div class="mb-1 mt-1">
-                    <label for="mouseid" class="form-label">Extras:</label>
-                    <div class="form-check">
-                        <input type="checkbox" id="mouseid" name="mouse" value="mouse" class="form-check-input">
-                        <label for="mouseid" class="form-check-label">Mouse</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" id="bagid" name="bag" value="bag" class="form-check-input">
-                        <label for="bagid" class="form-check-label">Bag</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" id="chargerid" name="charger" value="charger" class="form-check-input">
-                        <label for="chargerid" class="form-check-label">Charger</label>
-                    </div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Jobs</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+            <?php
+                $query= "SELECT staff_id, count(staff_id) as 'jobs', status, ticket_number FROM job group by staff_id having count(staff_id) <= 4 /*and (status = \"Completed\" or )*/";
+                $result = mysqli_query($conn, $query) or die("<h1 style='color:red;'>Could not execute the query</h1>");
+                
+                while($row = mysqli_fetch_array($result)){
+                    echo "<tr>";
+                    echo "<td><a href=\"edit.php?id={$row['staff_id']}\">" . $row['staff_id']. "</td>";
+                    echo "<td>" . $row['jobs']. "</td>";
+                    echo "</tr>";
+                }
+                mysqli_close($conn);
+            ?>
+
+                </tbody>
+              </table>
+
                 </div>
             </div>
-            <div class="col"></div>
         </div>
 
         <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
-                <input type="Submit" name="submit" value="Submit Repair" class="btn btn-success">
+                <input type="Submit" name="submit" value="Allocate" class="btn btn-info">
             </div>
-            <div class="col-sm-3"></div>
+            
         </div>
-
-
         </form>
         </div>
 

@@ -36,13 +36,13 @@ if (mysqli_num_rows($result)==1) {
         //check whether staff or student
         if (mysqli_num_rows($cust) == 1) {
           $_SESSION['acesssCust'] = "yes";
-          header("Location:index_cust.html");
+          header("Location:index_cust.php?id={$uName}");
       } elseif (mysqli_num_rows($staff)== 1) {
           $_SESSION['acesssStaff'] = "yes";
-          header("Location:index_staff.html");
+          header("Location:index_staff.php?id={$uName}");
       } elseif (mysqli_num_rows($tech)== 1) {
           $_SESSION['acesssTech'] = "yes";
-          header("Location:index_tech.html");
+          header("Location:index_tech.php?id={$uName}");
       } else {
           header("Location:index.html");
               echo "<p style ='color:red';>Incorrect login details</p>";

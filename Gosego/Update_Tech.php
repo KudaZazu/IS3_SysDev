@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="nav.css">
-    <title>Document</title>
+    <title>Crtl Intelligence- Update Repair</title>
 </head>
 
 
@@ -22,10 +22,11 @@
                 <img src="images/CI.png" alt="Logo" style="width:40px;" class="rounded-pill">
             </a>
         </div>
-        <a href=# class="nav-item">Home</a>
-                <a href="HowTo.html" class="nav-item">How To</a>
-                <a href="Find_Us.html" class="nav-item">Find Us</a>
-                <a href="#" class="nav-item">Book Consultation</a>
+        <a href="#" class="nav-item">Home</a>
+                <a href="newTicket.php" class="nav-item">New Ticket</a>
+                <a href="Jobs_Staff.php" class="nav-item">Jobs</a>
+                <a href="#" class="nav-item">Update </a>
+                <a href="Order.php" class="nav-item">Order </a>
                 <a href="#" class="nav-item"><i class="fa-circle-question rounded-pill"></i></a>
       </nav>
 
@@ -35,7 +36,7 @@
             <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8">
-                    <h1 class="display-5">New Repair Job</h1>
+                    <h1 class="display-5">Update Repair Job</h1>
                 </div>
                 <div class="col-sm-2"></div>
             </div>
@@ -43,30 +44,46 @@
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-5">
-                <h3>Requestor Information:</h3>
+                <h3>Job Information:</h3>
             </div>
             <div class="col-sm-5"></div>
         </div>
         <div class="row">
             <div class="col"></div>
             <div class="col">
-                <form action="newTicket.php" method="post" enctype="multipart/form-data">
+                <form action="Update_Tech.php" method="post" enctype="multipart/form-data">
                     <div id="center">
                         <div class="mb-1 mt-1">
-                            <label for="Fnameid" class="form-label">First Name:</label>
-                            <input type="text" id="Fnameid" name="Fname" class="form-control">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                            Ticket Number
+                            </button>
+                            <ul class="dropdown-menu">
+                            <?php
+                            require_once("config.php");
+
+                            $conn = mysqli_connect(SERVERNAME,USERNAME,PASSWORD,DATABASE) or die("<h1 style='color:red;'>Cannot connect to the database</h1>");
+                    
+                            $query1= "SELECT * FROM job INNER JOIN staff on job.staff_id= staff.staff_id INNER JOIN devices on job.device_id=devices.device_id  WHERE staff.userID=\"$ID\" ";
+                            $result1= mysqli_query($conn, $query1);
+                    
+                            while($row= mysqli_fetch_array($result1)){
+                             echo "<button type=\submit\" name=\"ticket\"><li>".$row['ticket_number']."</li></button>";
+                            }
+
+                            $row = mysqli_fetch_array($result1);
+                            $dName= $row['ticket_number'];
+                            ?>
+
+                           
+                            </ul>
                         </div>
                         <div class="mb-1">
-                            <label for="Lnameid" class="form-label">Last Name:</label>
+                            <label for="Lnameid" class="form-label">Device Name:</label>
                             <input type="text" id="Lnameid" name="Lname" class="form-control">
                         </div>
                         <div class="mb-1">
-                            <label for="studentid" class="form-label">Student Number:</label>
+                            <label for="studentid" class="form-label">Device Type:</label>
                             <input type="text" id="studentid" name="student" class="form-control">
-                        </div>
-                        <div class="mb-1">
-                            <label for="numberid" class="form-label">Contact Number:</label>
-                            <input type="text" id="numberid" name="number" class="form-control">
                         </div>
                     </div>
             </div>
@@ -82,7 +99,7 @@
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-5">
-                <h3>Device Information:</h3>
+                <h3>Equipment used:</h3>
             </div>
             <div class="col-sm-5"></div>
         </div>
@@ -91,46 +108,17 @@
             <div class="col"></div>
             <div class="col">
                 <div class="mb-1 mt-1">
-                    <label for="devicenameid" class="form-label">Device Name:</label>
-                    <input type="text" id="devicenameid" name="devicename" class="form-control">
-                </div>
-                <div class="mb-1">
-                    <label class="form-label" for="devicenumberid">Number of Devices:</label><br>
-                    <select class="form-select" name="devicenumber" id="devicenumberid" size="1">
-                        <option value="One">1</option>
-                        <option value="Two">2</option>
-                        <option value="Three">3</option>
-                    </select>
-                </div>
-                <div class="mb-1">
-                    <label class="form-label" for="typeid">Device Type:</label>
-                    <select class="form-select" name="type" id="typeid" size="1">
-                        <option value="Laptop">Laptop</option>
-                        <option value="Desktop">Desktop</option>
-                        <option value="Smartphone">Smartphone</option>
-                    </select>
-                </div>
-                <div class="mt-1">
-                    <label for="descrptionid" class="form-label">Fault Descrption:</label>
-                    <textarea name="descrption" id="descrptionid" rows="5" class="form-control"></textarea>
-                </div>
-                <div class="input-group">
-                    <input class="form-control" type="file" id="faultimage" name="faultimage"><br>
-                </div>
-                <div class="mb-1 mt-1">
-                    <label for="mouseid" class="form-label">Extras:</label>
-                    <div class="form-check">
-                        <input type="checkbox" id="mouseid" name="mouse" value="mouse" class="form-check-input">
-                        <label for="mouseid" class="form-check-label">Mouse</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" id="bagid" name="bag" value="bag" class="form-check-input">
-                        <label for="bagid" class="form-check-label">Bag</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" id="chargerid" name="charger" value="charger" class="form-check-input">
-                        <label for="chargerid" class="form-check-label">Charger</label>
-                    </div>
+                    <?php
+                        $query="SELECT * FROM parts";
+                        $result = mysqli_query($conn,$query);
+
+                        while($row = mysqli_fetch_array($result)){
+                            echo "<tr>";
+                            echo "<td>" . $row['name']. "   <input type =\"number\" name=\"numParts\"></td>";
+                            echo "</tr>";
+                        }
+                        mysqli_close($conn);
+                    ?>
                 </div>
             </div>
             <div class="col"></div>
@@ -139,7 +127,7 @@
         <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
-                <input type="Submit" name="submit" value="Submit Repair" class="btn btn-success">
+                <input type="Submit" name="submit" value="Update Repair" class="btn btn-success">
             </div>
             <div class="col-sm-3"></div>
         </div>
