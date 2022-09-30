@@ -1,4 +1,4 @@
-<!-- Update 2022/09/28 09.23 by Gosego Menwe -->
+<!-- Update 2022/09/30 12:35 by Gosego Menwe -->
 <?php
 
 session_start();
@@ -17,7 +17,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="Start.css"> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <title>Ctrl Solution-Orde Parts</title>
+        <title>Ctrl Solution-Order Parts</title>
         <script src="https://kit.fontawesome.com/e92da86d17.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
@@ -40,6 +40,17 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
         
         <section id="mainSection">
             <h1 class="Display-2 text-center">Parts</h1><br>
+            <?php if (isset($_GET['conf'])) { ?>
+
+<p class="conf"><?php echo $_GET['conf']; ?></p>
+
+<?php } ?>
+
+<?php if (isset($_GET['error'])) { ?>
+
+<p class="error"><?php echo $_GET['error']; ?></p>
+
+<?php } ?>
 
             <table class="table">
                 <thead>
@@ -62,9 +73,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
                     echo "<tr>";
                     echo "<td>" . $row['name']. "</td>";
                     echo "<td>" . $row['quantity']. "</td>";
+                    $_SESSION['part_id']= $row['part_id'];
+                    $_SESSION['sName']= $row['sname'];
                     echo "<td>" . $row['sname']. "</td>";
                     echo "<td>" . $row['contact']. "</td>";
-                    echo "<td> <input type=\"button\" value=\"Order\"></td>";
+                    $_SESSION['pName']= $row['name'];
+                    //$_SESSION['n']= getValue();
+                    echo "<td><a href=\"orderP.php\"><input type=\"button\" value=\"Order\" onClick = </a></td>"; 
                     echo "</tr>";
                 }
                 mysqli_close($conn);
@@ -74,6 +89,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
                   
                 </tbody>
               </table>
+              
 
         </section>
     </body>
@@ -82,7 +98,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
 }else{
 
 header("Location: login_staff.php?error=Session ended/ Does not exist");
-
 exit();
 
 }

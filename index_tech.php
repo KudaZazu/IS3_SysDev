@@ -72,7 +72,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
                                 while ($row= mysqli_fetch_array($result)){
                                     echo "<tr>";                                   
                                     echo "<td> " .$row['ticket_number']." " .$row['description']. "</td>";
-                                    echo "<td> <input type=\"button\" value=\"Complete\"> </td>";
+                                    $_SESSION['status']= $row['status'];
+                                    $_SESSION['ticketNum']= $row['ticket_number'];
+                                    echo "<td><a href=\"statusUpdate.php\"> <input type=\"button\" class=\"btn btn-primary\" value=\"Complete\"></a> </td>";
                                     echo "</tr>";
                                 }
 
@@ -98,32 +100,42 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
             </section>
         </fieldset>
     </section>
-    <footer class="footer">
 
-<nav class="navbar">
-    <div class="title-copyright">
-        <h3 class="logo-title">Ctrl Intelligence</h3>
-        <p class="copyright">Copyright &copy; 2022. South Africa</p>
+    <div class="row">
+        <div class="col-12"></div>
+        <div class="col-12"></div>
     </div>
 
-    <!-- Navbar -->
-  
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link" href="contact.html">Contact us</a>
-        <a class="nav-link" href="conditions.html">T&C'S</a>
+
+    <footer class="footer bg-dark" id="foot">
+    <div class="container py-3">
+      <span class="text-light">
+    
     
 
-    <!-- social media section -->
-    <div class="social">
+
+    <div class="d-flex flex-row bg-secondary mb-3">
+    <div class="p-2 "><a class="nav-link" href="index.html">Home</a></div>
+    <div class="p-2 "><a class="nav-link" href="contact.html">Contact us</a></div>
+    <div class="p-2 "><a class="nav-link" href="conditions.html">T&C'S</a></div>
         
-            <a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-            <a target="_blank" href="https://www.instagram.com/?hl=en"><i class="fa fa-instagram"></i></a>
-            
-            <a target="_blank" href="https://www.github.com/"><i class="fa fa-github"></i></a>
-            <a target="_blank" href="https://twitter.com/?lang=en"><i class="fa fa-twitter"></i></a>
+    </div>
+    <h3 >Ctrl Intelligence</h3>
+        <p >Copyright &copy; 2022. South Africa</p>
+
+    <!-- social media section -->
+    <div class="d-flex flex-row bg-secondary mb-4">
+
+    <div class="p-2 "><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></div>
+    <div class="p-2 "><a target="_blank" href="https://www.instagram.com/?hl=en"><i class="fa fa-instagram"></i></a></div>
+    <div class="p-2 "><a target="_blank" href="https://www.github.com/"><i class="fa fa-github"></i></a></div>
+    <div class="p-2 "><a target="_blank" href="https://twitter.com/?lang=en"><i class="fa fa-twitter"></i></a></i></a></div>
+              
         
     </div>
 </nav>
+      </span>
+    </div>
 </footer>
 </body>
 </html>

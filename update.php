@@ -18,7 +18,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
                 
             }else {
             $query2= "UPDATE parts SET quantity= $partquan  where part_id={$_SESSION['partID']} ";
-            var_dump($query2);
+         
             $result2=mysqli_query($conn,$query2) or die("Its me on line 162");
 
             mysqli_close($conn);
@@ -36,3 +36,5 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
         
         }
     ?>
+
+    

@@ -124,6 +124,14 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
             <div class="col-sm-3"></div>
             <div class="col">
                 <div class="mb-1 mt-1">
+                    <table class="table">
+                        <tr>
+                            <th>Part</th>
+                            <th>/</th>
+                        </tr>
+                            
+                    <tbody>
+                    
                     <?php
                         $query="SELECT * FROM parts";
                         $result = mysqli_query($conn,$query);
@@ -133,18 +141,21 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
                             $pID= $row['part_id'];
                             $_SESSION['partID'] = $pID;
                             $quan=$row['quantity'];
-                            echo "<td>" . $row['name']. "&nbsp <a href=\"editParts.php\"><input type=\"button\" name=\"bParts\" value=\"edit\"></a></td>";
+                            echo "<td>" . $row['name'];
+                            echo "<td> <a href=\"editParts.php\"><input type=\"button\" name=\"bParts\" value=\"edit\"></a></td>";
                             echo "</tr>";
                         }
                         
                     ?>
+                    </tbody>
+                    </table>
                 </div>
     </div>
 
     <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
-                <input type="button" name="submit" value="Update Repair" class="btn btn-success">
+                <input type="button" name="submit" value="Update Repair" class="btn btn-success text-center">
             </div>
             <div class="col-sm-3"></div>
 

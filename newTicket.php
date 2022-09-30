@@ -1,3 +1,9 @@
+<!-- Update 2022/09/28 13:33 by Kenneth Chieza 
+added functionality to switch navbar depending on if staff/tech is logged in
+-->
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,26 +21,7 @@
 <body>
 
     <div class="navbar">
-        <?php
-        if ($_SESSION['user'] == "tech") {
-            echo
-            "
-            <a href=\"index_tech.html\">Home</a>
-            <a class=\"active\" href=\"NewTicket.php\">New Ticket</a>
-            <a href=\"Job_Staff.php\">Jobs</a>
-            <a href=\"Update_Tech.php\">Update</a>
-            <a href=\"#about\">Order</a>
-            ";
-        } elseif ($_SESSION['user'] == "staff") {
-            echo
-            "
-            <a href=\"index_staff.php\">Home</a>
-            <a class=\"active\" href=\"#news\">New Ticket</a>
-            <a href=\"Job_Staff.php\">Jobs</a>
-            <a href=\"Allocate.php\">Allocate</a>
-            ";
-        }
-        ?>
+        <?php require_once("staffORtech_nav.php"); ?>
     </div>
     <div class="container-fluid">
 

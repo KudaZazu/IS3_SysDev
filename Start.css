@@ -8,12 +8,27 @@ body {
 .Start {
     
      /*display: flex; */
-     background-image: url("images/Computer-Repair.jpg") no-repeat center fixed;
-     background-size: cover;
+     background-image: url("images/Computer-Repair.jpg") no-repeat;
+    /* background-size: cover; */
      align-items: center;
     
      text-align: center;
   
+}
+
+.conf {
+
+  background: greenyellow;
+
+  color: #0c0101;
+
+  padding: 10px;
+
+  width: 95%;
+
+  border-radius: 5px;
+
+  margin: 20px auto;
 }
 
 

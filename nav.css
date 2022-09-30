@@ -21,9 +21,18 @@ input[type=submit] {
   width: 100%;
 }
 
+#foot {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+
 .navbar {
   width: 100%;
-  background-color: #00cc66;
+  /*background-color: #00cc66; */
   overflow: auto;
   display: flex;
     justify-content: space-between;

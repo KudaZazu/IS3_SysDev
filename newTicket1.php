@@ -1,3 +1,6 @@
+<!-- Update 2022/09/28 13:33 by Kenneth Chieza 
+added functionality to switch navbar depending on if staff/tech is logged in
+-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,11 +40,7 @@
 
 
     <div class="navbar">
-        <a href="#home">Home</a>
-        <a class="active" href="#news">New Ticket</a>
-        <a href="#contact">Jobs</a>
-        <a href="#about">Update</a>
-        <a href="#about">Order</a>
+        <?php require_once("staffORtech_nav.php"); ?>
     </div>
     <div class="container-fluid">
 

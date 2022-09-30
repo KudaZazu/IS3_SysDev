@@ -1,5 +1,7 @@
+<!-- Update 2022/09/28 13:32 by Kenneth Chieza 
+added .php extension to Jobs_Staff href in navbar
+-->
 <?php
-
 session_start();
 
 if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
@@ -29,7 +31,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
         </div>
         <a href="#" class="nav-item">Home</a>
         <a href="newTicket.php" class="nav-item">New Ticket</a>
-        <a href="Jobs_Staff" class="nav-item">Jobs</a>
+        <a href="Jobs_Staff.php" class="nav-item">Jobs</a>
         <a href="Allocate.php" class="nav-item">Allocate</a>
         <a href="#" class="nav-item">Reports</a>
         <a href="logout.php" class="nav-item"><i class="fa-circle-question rounded-pill"></i></a>
@@ -40,93 +42,108 @@ if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
             <div class="row">
                 <div class="col-md-8 p-3">
                     <section id="newJobs">
-                        <fieldset >
+                        <fieldset>
                             <legend>New Jobs</legend>
+                            <table class="table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Description</th>
+                                <th>/</th>
+                            </tr>
+                            <tbody>
+                
                             <?php
-                            require_once("config.php");
-                    
-                                $conn = mysqli_connect(SERVERNAME,USERNAME,PASSWORD,DATABASE) or die("<h1 style='color:red;'>Cannot connect to the database</h1>");
+                                require_once("config.php");
+
+                                $conn = mysqli_connect(SERVERNAME, USERNAME, PASSWORD, DATABASE) or die("<h1 style='color:red;'>Cannot connect to the database</h1>");
                                 $query = "SELECT * FROM job WHERE job.status= \"Not allocated\" ";
                                 $result = mysqli_query($conn, $query) or die("Cannot execute query");
-                               
-                                while ($row= mysqli_fetch_array($result)){
-                                    echo "<p>" .$row['ticket_number']." " .$row['description']. "      <input type=\"button\" value=\"Allocate\"></p>";
+
+                                while ($row = mysqli_fetch_array($result)) {
+                                    echo "<tr>";
+                                    echo "<td><p>" . $row['ticket_number'] ."</p></td>";
+                                    echo "<td>". $row['description']. "</td>";
+                                    echo "<td>    <input type=\"button\" value=\"Allocate\"></td>";
+                                    echo "</tr>";
                                 }
-                    
-                            ?>
+
+                                ?>
+                            </tbody>
+                            </table>
                         </fieldset>
                     </section><br>
 
                     <section id="jobHistory">
                         <fieldset>
                             <legend>Job History</legend>
-                                
+
                             <table class="table">
-                                    <thead>
+                                <thead>
                                     <tr>
                                         <th>Ticket</th>
                                         <th>Device</th>
                                         <th>Description</th>
                                         <th>Status</th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
+                                </thead>
+                                <tbody>
                                     <?php
-                                    $ID= $_SESSION['id'];
-                                    //Im gonna have to join this damn shit again
-                                    
-                                        $query2 ="SELECT * FROM job INNER JOIN staff ON job.staff_id=staff.staff_id INNER JOIN devices ON job.device_id= devices.device_id where staff.userID=\"$ID\" ";
+                                        $ID = $_SESSION['id'];
+                                        //Im gonna have to join this damn shit again
+
+                                        $query2 = "SELECT * FROM job INNER JOIN staff ON job.staff_id=staff.staff_id INNER JOIN devices ON job.device_id= devices.device_id where staff.userID=\"$ID\" ";
                                         $result = mysqli_query($conn, $query2);
-                                        while($row = mysqli_fetch_array($result)){
+                                        while ($row = mysqli_fetch_array($result)) {
                                             echo "<tr>";
-                                            echo "<td>" . $row['ticket_number']. "</td>";
-                                            echo "<td>" . $row['name']. "  " .$row['devices.type']. "</td>";
-                                            echo "<td>" . $row['description']. "</td>";
-                                            echo "<td>" . $row['status']. "</td>";
+                                            echo "<td>" . $row['ticket_number'] . "</td>";
+                                            echo "<td>" . $row['name'] . "  " . $row['devices.type'] . "</td>";
+                                            echo "<td>" . $row['description'] . "</td>";
+                                            echo "<td>" . $row['status'] . "</td>";
                                             echo "</tr>";
                                         }
                                         mysqli_close($conn);
-                                    ?>
-                                    </tbody>
-                                </table>
+                                        ?>
+                                </tbody>
+                            </table>
                         </fieldset>
                     </section>
                     <br>
-                    <input type="button" name="submitt" value="Create New Ticket" class="btn btn-success" width="100%" onclick="newTicket.php">
+                    <input type="button" name="submitt" value="Create New Ticket" class="btn btn-success" width="100%"
+                        onclick="newTicket.php">
                 </div>
 
                 <div class="col-md-4 p-3">
                     <fieldset>
-                            <section id="notifs">
-                                <button type="button"  class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo">My Notifications</button>
-                                <div id="demo" class="collapse show">
-                                    <!-- Remember to do the messages-->
-                                    <p>hdujfvvvvndnnndndsndsndndmmcds</p>   
-                                </div>
-                                <div id="date">
-                                    <script>
-                                        document.getElementById("current_date").innerHTML = Date();
-                                    </script>
-                                </div>
-                            </section>
+                        <section id="notifs">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="collapse"
+                                data-bs-target="#demo">My Notifications</button>
+                            <div id="demo" class="collapse show">
+                                <!-- Remember to do the messages-->
+                                <p>hdujfvvvvndnnndndsndsndndmmcds</p>
+                            </div>
+                            <div id="date">
+                                <script>
+                                document.getElementById("current_date").innerHTML = Date();
+                                </script>
+                            </div>
+                        </section>
                     </fieldset>
                 </div>
             </div>
         </div>
-        
+
     </section>
 </body>
 
 </html>
 
-<?php 
+<?php
 
-}else{
+} else {
 
-     header("Location: login_staff.php");
+    header("Location: login_staff.php");
 
-     exit();
-
+    exit();
 }
 
- ?>
+?>

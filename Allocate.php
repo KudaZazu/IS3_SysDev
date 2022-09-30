@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['userID'])) {
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -118,8 +124,8 @@
                 
                 while($row = mysqli_fetch_array($result)){
                     echo "<tr>";
-                    echo "<td><a href=\"edit.php?id={$row['staff_id']}\">" . $row['staff_id']. "</td>";
                     echo "<td>" . $row['jobs']. "</td>";
+                    echo "<td><a href=\"edit.php><input </a></td>";
                     echo "</tr>";
                 }
                 mysqli_close($conn);
@@ -144,4 +150,13 @@
 
     </body>
 </html>
+
+<?php
+}else{
+
+header("Location: login_staff.php?error=Session ended/ Does not exist");
+exit();
+
+}
+?>
 

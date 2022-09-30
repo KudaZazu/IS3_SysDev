@@ -15,6 +15,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   width: 280px;
 }
 
+
 .error {
 
   background: #F2DEDE;
@@ -39,7 +40,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   right: 15px;
   border: 3px solid #f1f1f1;
   z-index: 9; 
-  background-color: darkcyan;
+  background-color: 	#36454F ;
 }
 
 /* Add styles to the form container */
@@ -66,7 +67,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #04AA6D;
+  background-color: #0dcaf0;
   color: white;
   padding: 16px 20px;
   border: none;
