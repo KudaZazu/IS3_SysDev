@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart1);
+
+        function drawChart1() {
+            <?php
+
+                    require_once("config.php");
+                    $conn= mysqli_connect(SERVERNAME, USERNAME, PASSWORD, DATABASE) or die("<h2 style=\'color:red;\'>DATABASE ERROR: unable to validate your credentials!</h2>");
+                    $query2 = "select distinct fname,lname, count(job.staff_id) from staff
+                    INNER JOIN job ON job.staff_id = staff.staff_id
+                    GROUP BY job.staff_id
+                    limit 5";
+                    $visresult1 = mysqli_query($conn, $query2);
+                    echo "var data = google.visualization.arrayToDataTable([";
+                    echo "['Technician', 'Jobs'],";
+                    while ($row = mysqli_fetch_array($visresult1))
+                    {
+                        $techName = $row['fname']." ".$row['lname'];
+                        $tasks = $row['count(job.staff_id)'];
+                        echo "['$techName','$tasks'],";
+                    }
+                    echo "]);";
+                    ?>
+
+            var options = {
+                title: 'Technicians and the jobs done/in progress';
+                hAxis: {
+                    title: 'Technician'
+                },
+                vAxis: {
+                    title: 'Jobs'
+                }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById("chart_div"));;
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="chart_div" style="width: 900px; height: 600px;"></div>
+</body>
+
+</html>

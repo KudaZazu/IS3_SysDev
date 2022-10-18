@@ -1,0 +1,185 @@
+body {
+  background-color: aliceblue;
+  font-size: large;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.Start {
+
+  /*display: flex; */
+  background-image: url("images/Computer-Repair.jpg") no-repeat;
+  /* background-size: cover; */
+  align-items: center;
+
+  text-align: center;
+
+}
+
+.conf {
+
+  background: greenyellow;
+
+  color: #0c0101;
+
+  padding: 10px;
+
+  width: 95%;
+
+  border-radius: 5px;
+
+  margin: 20px auto;
+}
+
+
+/* The start page images */
+
+.container {
+  position: relative;
+  width: 50%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: wheat
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+input[button] {
+  line-height: 1.5;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: darkseagreen;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {
+  background-color: #3e8e41
+}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.HowToBody {
+  background-image: url(images/close-up-male-hands-typing-laptop-keyboard.jpg);
+  min-height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+/* Turn off parallax scrolling for all tablets and phones. Increase/decrease the pixels if needed */
+@media only screen and (max-device-width: 1366px) {
+  .parallax {
+    background-attachment: scroll;
+  }
+}
+
+/* Navigation bar */
+
+.navbar {
+
+  background-color: lightskyblue;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  width: 20%;
+  /* Four links of equal widths */
+  text-align: center;
+}
+
+.navbar a:hover {
+  background-color: #000;
+}
+
+.navbar a.active {
+  background-color: aliceblue;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+.Start {
+  text-align: center;
+}
+
+.Steps span {
+  text-align: center;
+  display: block;
+  margin: 1%;
+  width: 23%;
+  float: left;
+}
+
+.Steps p {
+  display: block;
+  opacity: .5;
+  font-size: 14px;
+  color: #000;
+}
+
+#l {
+  width: 100%;
+}
+
+/* Progress bar */
